@@ -2,7 +2,7 @@ const passport = require('passport')
 
 module.exports = (router) => {
   router.get('/', async (ctx, next) => {
-    ctx.body = 'Welcome, rugrats!';
+    ctx.body = ctx.isAuthenticated() ? 'Hello, ' + ctx.req.user.username + '!' : 'Hello, rugrats!' ;
   })
 
   router.get('/login', async (ctx) => {

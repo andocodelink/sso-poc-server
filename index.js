@@ -3,8 +3,9 @@ const Router = require('koa-router')
 const session = require('koa-session')
 const passport = require('koa-passport')
 const bodyParser = require('koa-bodyparser')
-const cors = require('@koa/cors')
+const cors = require('koa2-cors')
 const logger = require('koa-logger')
+
 const chalk = require('chalk')
 
 const app = new Koa()
