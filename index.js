@@ -43,7 +43,7 @@ require('./routes/basic')(router)
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-const server = app.listen(3001, () => {
+const server = app.listen(3002, () => {
   console.log(chalk.cyan(chalk.bold('app is listening on port 3001')))
 })
 
