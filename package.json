@@ -1,0 +1,22 @@
+{
+  "name": "sso-poc-server",
+  "version": "0.0.1",
+  "description": "proof of concept: sso server",
+  "main": "index.js",
+  "author": "An Do",
+  "license": "UNLICENSED",
+  "scripts": {
+    "test": "echo 'No test specific!' && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "chalk": "^2.4.2",
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-cookie": "^1.0.0",
+    "koa-logger": "^3.2.1",
+    "koa-passport": "^4.1.3",
+    "koa-router": "^7.4.0",
+    "koa-session": "^5.12.2"
+  }
+}
