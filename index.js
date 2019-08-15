@@ -15,11 +15,24 @@ app.use(logger())
 
 // Session
 app.keys = ['serect']
-app.use(session(app))
+const SESSION_CONFIG = {
+  key: 'SESSIONID', 
+  maxAge: 86400000,
+  autoCommit: true,
+  overwrite: true,
+  httpOnly: true,
+  signed: true,
+  rolling: false,
+  renew: false
+};
+app.use(session(SESSION_CONFIG, app))
 
 // Middleware
 app.use(bodyParser())
-app.use(cors())
+const CORS_CONFIG = {
+  credentials: true
+}
+app.use(cors(CORS_CONFIG))
 
 // Auth
 require('./auth')
@@ -44,7 +57,7 @@ app.use(router.routes())
 app.use(router.allowedMethods())
 
 const server = app.listen(3002, () => {
-  console.log(chalk.cyan(chalk.bold('app is listening on port 3001')))
+  console.log(chalk.cyan(chalk.bold('app is listening on port 3002')))
 })
 
 module.exports = server
