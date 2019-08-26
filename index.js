@@ -30,7 +30,12 @@ app.use(session(SESSION_CONFIG, app))
 // Middleware
 app.use(bodyParser())
 const CORS_CONFIG = {
-  credentials: true
+  origin: '*',
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: false,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
 }
 app.use(cors(CORS_CONFIG))
 

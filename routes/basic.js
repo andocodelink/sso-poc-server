@@ -34,6 +34,11 @@ module.exports = (router) => {
     })(ctx)
   })
 
+  router.get('/login-sso', async (ctx) => {
+    ctx.redirect('http://localhost:3000/')
+    ctx.status = 302
+  })
+
   router.get('/logout', async (ctx) => {
     console.log('cookie SESSIONID=' + chalk.yellow(ctx.cookies.get('SESSIONID')))
     if (ctx.isAuthenticated()) {
