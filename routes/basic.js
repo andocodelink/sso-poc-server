@@ -1,5 +1,6 @@
 const passport = require('passport')
 const chalk = require('chalk')
+const fetch = require('node-fetch')
 
 module.exports = (router) => {
   router.get('/', async (ctx, next) => {
@@ -35,8 +36,23 @@ module.exports = (router) => {
   })
 
   router.get('/login-sso', async (ctx) => {
-    ctx.redirect('http://localhost:3000/')
+    let clientRedirect = new URL(ctx.query.redirect, ctx.header.origin).toString();
+    let serviceRedirect = ctx.origin;
+    ctx.redirect('http://localhost:3000/login?clientRedirect=' + encodeURIComponent(clientRedirect) + '&serviceRedirect=' + encodeURIComponent(serviceRedirect));
     ctx.status = 302
+  })
+
+  router.get('/ssoCallback', async (ctx) => {
+    let ssoToken = ctx.query.ssoToken;
+    const res = await fetch('http://localhost:3000/exchange_token?sso_token=' + encodeURIComponent(ssoToken), {
+      method: 'GET'
+    })
+    if (res.status == 200) {
+      const data = await res.json();
+      ctx.body = data
+    } else {
+      ctx.throw(400, JSON.stringify({ status: 'Exchange token error' }))
+    }
   })
 
   router.get('/logout', async (ctx) => {
