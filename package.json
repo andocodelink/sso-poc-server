@@ -18,7 +18,7 @@
     "koa-router": "^7.4.0",
     "koa-session": "^5.12.2",
     "koa2-cors": "^2.0.6",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "passport-local": "^1.0.0"
   }
 }
